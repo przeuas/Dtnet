@@ -11,7 +11,7 @@ namespace ZadanieLaboratoryjneDotNet.Model.Models
         [Key]
         public virtual int Id { get; set; }
         public virtual string Kategoria { get; set; }
-        public virtual DateTime Data { get; set; }
+        public virtual string Data { get; set; }
         public virtual string Tytul{ get; set; }
         public virtual string Opis { get; set; }
     }
