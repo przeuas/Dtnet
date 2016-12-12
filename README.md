@@ -114,3 +114,6 @@ public ActionResult GetAll()
 Dobrze, co tu się dzieje -> widzimy metodę z nagłówkiem `[HttpGet]` czyli rządanie GET bez parametrów. Celem metody `GetAll` jest zwrócenie w postaci wyniku JSON obiektu z najnowszymi newsami. Wynikiem metody jest `JsonResult`, czyli typ, z któego będziemy korzystali w każdej z metod. Jako parametr możemy podać dowolny typ. Ja użyłem dynamicznego typu anonimowego. czyli: `new { }`. Dzięki temu mamy dowolność, jeżeli chodzi o atrybuty danego obiektu. W tym przypadku widzimy dwa paramtery: `success` oraz `data`.
 Do `data` przypisujemy wynik z metody `GetAllNews` znajdującej się w repozytorium `NewsRepository` - czyli tak jak chcieliśmy.
 
+## Zadanie 3
+Proszę o dodanie repozytorium, które obsłuży model, który przygotowałem do tego ćwiczenia - jest to model `Model/Category.cs`.
+Jest to bardzo prosty model zawierający jedynie `Id` oraz `Nazwa` dla kategori. Chciałbym, aby w repozytorium znalazły się dwie metody. Jedna `GET` pobierająca wszystkie kategorie z bazy danych. Druga - `POST` przyjmująca jako parametr jedynie ciąg znaków - `string`, jej zadaniem będzie wstawienie nowej kategori do bazy danych.
