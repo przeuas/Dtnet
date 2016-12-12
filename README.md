@@ -87,3 +87,30 @@ W tym zadaniu zapoznaliśmy się z projektem, uruchomiliśmy nasze API i zrobili
 
 ## Zadanie 2
 W tym zadaniu nauczymy się jak podpiąć nasze repozytorium do API w kontrolerze `NewsController`, aby pobierał dane z bazy.
+
+W tym celu na początku kontrolera należy zadeklarować nasze rerpo - będzie to interfejs `INewsRepository` oraz skorzystamy z DI, które dostarczy nam nasze repo w konstruktorze. Korzystamy bowiem ze wstrzykiwania zależności przez konstruktor. Cały kod, który należy zaimplementować w kontrolerze wygląda następująco:
+```csharp
+private INewsRepository NewsRepository { get; set; }
+
+public NewsController(INewsRepository repo)
+{
+    NewsRepository = repo;
+}
+```
+Widzimy tutaj deklarację zmiennej prywatnej i typie interfejsu `INewsRepository`. Następnie w kontrolerze, przyjmującym jako parametr dokładnie taki sam typ czyli `INewsRepository` przypisujemy do naszej zmiennej. Jak widzimy - nie użyliśmy słówka `new` a mimo to, nasze repozytorium zadziała. Dzieje się tak, ponieważ korzystamy z mechanizmu DI. Na potrzeby projektu został on tak skonfigurowany, że wszystkie pliki, które kończą się na `Repository` oraz `Service` będą wstrzykiwane przez konstruktor - czyli w parametrach będziemy podawali kolejne byty, które chcemy wstrzyknąć. Ponadto wymagane jest, aby te repozytoria i serwisy, które wstrzykujemy implmenetowały interfejs. W rezultacie powinniśmy otrzymywać paczkę dwóch plików: `INazwaRepo` jako interfejs oraz `NazwaRepo` jako klasa implementująca ten interfejs.
+
+Mamy już repozytorium, także czas, aby z niego skorzystać. W tym celu proszę usunąć istniejące metody testowe w kontrolerze `NewsController`. Stworzymy nową metodę, która będzie odpowiadała na bezparametrowe rządanie `GET`. Bazując na testowych przypadkach, wiemy jak stworzyć taką metodę. Jedyną różnicą jaka się pojawi, będzie pobranie danych używając repozytorium.
+```csharp
+[HttpGet]
+public ActionResult GetAll()
+{
+    return new JsonResult(new
+    {
+        success = true,
+        data = NewsRepository.GetAllNews()
+    });
+}
+```
+Dobrze, co tu się dzieje -> widzimy metodę z nagłówkiem `[HttpGet]` czyli rządanie GET bez parametrów. Celem metody `GetAll` jest zwrócenie w postaci wyniku JSON obiektu z najnowszymi newsami. Wynikiem metody jest `JsonResult`, czyli typ, z któego będziemy korzystali w każdej z metod. Jako parametr możemy podać dowolny typ. Ja użyłem dynamicznego typu anonimowego. czyli: `new { }`. Dzięki temu mamy dowolność, jeżeli chodzi o atrybuty danego obiektu. W tym przypadku widzimy dwa paramtery: `success` oraz `data`.
+Do `data` przypisujemy wynik z metody `GetAllNews` znajdującej się w repozytorium `NewsRepository` - czyli tak jak chcieliśmy.
+
