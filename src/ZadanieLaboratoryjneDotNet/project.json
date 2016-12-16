@@ -43,6 +43,10 @@
     }
   },
 
+  "runtimes": {
+    "win10-x64": {}
+  },
+
   "publishOptions": {
     "include": [
       "wwwroot",
