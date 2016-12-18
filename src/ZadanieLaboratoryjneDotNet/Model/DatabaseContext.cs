@@ -10,6 +10,8 @@ namespace ZadanieLaboratoryjneDotNet.Model
     public class DatabaseContext : DbContext
     {
         public DbSet<News> News { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Filename=ZadanieDotNet.db");
