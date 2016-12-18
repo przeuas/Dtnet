@@ -117,7 +117,7 @@ Do `data` przypisujemy wynik z metody `GetAllNews` znajdującej się w repozytor
 
 ## Zadanie 3
 Proszę o dodanie repozytorium, które obsłuży model, który przygotowałem do tego ćwiczenia - jest to model `Model/Category.cs`.
-Jest to bardzo prosty model zawierający jedynie `Id` oraz `Nazwa` dla kategori. Chciałbym, aby w repozytorium znalazły się dwie metody.  Jedna metoda pobierająca wszystkie kategorie, druga dodająca nową kategorię do bazy danych. Następnie analogicznie do poprzednich ćwiczeń, proszę stworzyć kontroler dla kategorii, który również będzie posiadał dwie metody - jedna `GET` pobierająca wszystkie kategorie z bazy danych (używając repozytorium), druga - `POST` przyjmująca jako parametr jedynie ciąg znaków - `string`, jej zadaniem będzie wstawienie nowej kategori do bazy danych (używając repozytorium).
+Jest to bardzo prosty model zawierający jedynie `Id` oraz `Nazwa` dla kategori. Chciałbym, aby w repozytorium znalazły się dwie metody.  Jedna metoda pobierająca wszystkie kategorie, druga dodająca nową kategorię do bazy danych. Następnie analogicznie do poprzednich ćwiczeń, proszę stworzyć kontroler dla kategorii, który również będzie posiadał dwie metody - jedna `GET` pobierająca wszystkie kategorie z bazy danych (używając repozytorium), druga - `POST` przyjmująca jako parametr jedynie klasę `Category`, jej zadaniem będzie wstawienie nowej kategori do bazy danych (używając repozytorium).
 
 Aby zrealizować to świczenie, proszę wzorować się na istniejącym już kodzie - repozytorium i kontrolerze. Puste pliki, gotowe do uzupełnienia, są zawarte w repozytorium. Głównym zadaniem jest zadeklarowanie w interfejsie repozytorium dwóch metod, następnie ich napisanie w klasie repozytorium. W kolejnym kroku należy podpiąć repozytorium w kontrolerze (pokazane w poprzednich ćwiczeniach). Na końcu tworzymy dwie metody w kontrolerze z odpowiednimi atrybutami: `[HttpGet/HttpPost]`. 
 
@@ -126,8 +126,12 @@ Po wykonaniu zadania, przy użyciu Swaggera, proszę przetestować działanie AP
 Dla ułatwienia podpowiem jaka powinna być składnia metody `POST`
 ```csharp
 [HttpPost]
-public ActionResult Post([FromBody] string nazwaKategori) {
+public ActionResult Post([FromBody] Category kategoria) {
   // ... treść metody
 }
 ```
-Dopisek `[FromBody]` jest bardzo ważny. Informuje on, że ten parametr będzie pobierany z ciała zapytania. Nie będzie to adres zapytania, jak w przypadku metod `GET`.
+Dopisek `[FromBody]` jest bardzo ważny. Informuje on, że ten parametr będzie pobierany z ciała zapytania. Nie będzie to adres zapytania, jak w przypadku metod `GET`. Z racji, że jest to wstawienie nowej kategori warto w repozytorium przed dodaniem jej do bazy danych, ustawić `Id = 0`. Wtedy `EntityFramework` wie, że ma wykonać polecenie `Insert`.
+Aby wstawić rekord do bazy danych należy wykonać dwa polecenia:
+> `Context.Categories.Add(nowaKategoria);` oraz `Context.SaveChanges();`
+
+Pierwsza dodaje obiekt do bazy, a druga powoduje zapisanie zmian zrobionych na bazie. Dzięki temu możemy wykonywać kilka poleceń na bazie danych w jednej paczce.
