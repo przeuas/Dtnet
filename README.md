@@ -88,6 +88,7 @@ W tym zadaniu zapoznaliśmy się z projektem, uruchomiliśmy nasze API i zrobili
 ## Zadanie 2
 W tym zadaniu nauczymy się jak podpiąć nasze repozytorium do API w kontrolerze `NewsController`, aby pobierał dane z bazy.
 
+
 W tym celu na początku kontrolera należy zadeklarować nasze rerpo - będzie to interfejs `INewsRepository` oraz skorzystamy z DI, które dostarczy nam nasze repo w konstruktorze. Korzystamy bowiem ze wstrzykiwania zależności przez konstruktor. Cały kod, który należy zaimplementować w kontrolerze wygląda następująco:
 ```csharp
 private INewsRepository NewsRepository { get; set; }
@@ -122,3 +123,11 @@ Aby zrealizować to świczenie, proszę wzorować się na istniejącym już kodz
 
 Po wykonaniu zadania, przy użyciu Swaggera, proszę przetestować działanie API. Proszęodczytywać i zapisywać dane. Po każdym zapisaniu powinniśmy mieć coraz większy zbiór.
 
+Dla ułatwienia podpowiem jaka powinna być składnia metody `POST`
+```csharp
+[HttpPost]
+public ActionResult Post([FromBody] string nazwaKategori) {
+  // ... treść metody
+}
+```
+Dopisek `[FromBody]` jest bardzo ważny. Informuje on, że ten parametr będzie pobierany z ciała zapytania. Nie będzie to adres zapytania, jak w przypadku metod `GET`.
