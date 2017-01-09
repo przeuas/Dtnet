@@ -6,6 +6,8 @@ Skupimy się na wykorzystaniu Entity Frameworka do komunikacji z bazą danych or
 zastosujemy Dependency Injection, które będzie używane w naszych repozytoriach, o czym słów kilka później.
 
 ## Wymagania wstępne
+Na samym początku należy się upewnić, że mamy zainstalowane środowisko ASP .NET Core. Link do pobrania -> https://www.microsoft.com/net/download/core#/current
+
 Aby zacząć wykonywać zadanie należy pobrać repozytorium na swój komputer.
 Następnie należy otworzyć projekt i poczekać kilka chwil, aż Visual Studio pobierze wymagane pakiety z Nugeta.
 
