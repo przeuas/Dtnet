@@ -116,7 +116,7 @@ public ActionResult GetAll()
 ```
 Dobrze, co tu się dzieje -> widzimy metodę z nagłówkiem `[HttpGet]` czyli rządanie GET bez parametrów. Celem metody `GetAll` jest zwrócenie w postaci wyniku JSON obiektu z najnowszymi newsami. Wynikiem metody jest `JsonResult`, czyli typ, z któego będziemy korzystali w każdej z metod. Jako parametr możemy podać dowolny typ. Ja użyłem dynamicznego typu anonimowego. czyli: `new { }`. Dzięki temu mamy dowolność, jeżeli chodzi o atrybuty danego obiektu. W tym przypadku widzimy dwa paramtery: `success` oraz `data`.
 Do `data` przypisujemy wynik z metody `GetAllNews` znajdującej się w repozytorium `NewsRepository` - czyli tak jak chcieliśmy.
-
+<!--
 ## Zadanie 3
 Proszę o dodanie repozytorium, które obsłuży model, który przygotowałem do tego ćwiczenia - jest to model `Model/Category.cs`.
 Jest to bardzo prosty model zawierający jedynie `Id` oraz `Nazwa` dla kategori. Chciałbym, aby w repozytorium znalazły się dwie metody.  Jedna metoda pobierająca wszystkie kategorie, druga dodająca nową kategorię do bazy danych. Następnie analogicznie do poprzednich ćwiczeń, proszę stworzyć kontroler dla kategorii, który również będzie posiadał dwie metody - jedna `GET` pobierająca wszystkie kategorie z bazy danych (używając repozytorium), druga - `POST` przyjmująca jako parametr jedynie klasę `Category`, jej zadaniem będzie wstawienie nowej kategori do bazy danych (używając repozytorium).
@@ -137,3 +137,4 @@ Aby wstawić rekord do bazy danych należy wykonać dwa polecenia:
 > `Context.Categories.Add(nowaKategoria);` oraz `Context.SaveChanges();`
 
 Pierwsza dodaje obiekt do bazy, a druga powoduje zapisanie zmian zrobionych na bazie. Dzięki temu możemy wykonywać kilka poleceń na bazie danych w jednej paczce.
+-->
