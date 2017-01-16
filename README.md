@@ -119,9 +119,15 @@ Do `data` przypisujemy wynik z metody `GetAllNews` znajdującej się w repozytor
 
 ## Zadanie 3
 Proszę o usupełnienie repozytorium, które obsłuży model, który przygotowałem do tego ćwiczenia - jest to model `Model/Category.cs`.
-Jest to bardzo prosty model zawierający jedynie `Id` oraz `Nazwa` dla kategori. Chciałbym, aby w repozytorium znalazły się dwie metody.  Jedna metoda pobierająca wszystkie kategorie, druga dodająca nową kategorię do bazy danych. Następnie analogicznie do poprzednich ćwiczeń, proszę stworzyć kontroler dla kategorii, który również będzie posiadał dwie metody - jedna `GET` pobierająca wszystkie kategorie z bazy danych (używając repozytorium), druga - `POST` przyjmująca jako parametr jedynie klasę `Category`, jej zadaniem będzie wstawienie nowej kategori do bazy danych (używając repozytorium).
+Jest to bardzo prosty model zawierający jedynie `Id` oraz `Nazwa` dla kategori. Chciałbym, aby w repozytorium znalazły się dwie metody.  Jedna metoda pobierająca wszystkie kategorie, druga dodająca nową kategorię do bazy danych. Aby wszystko działało poprawnie należy w interfejsie wpisać metody jakie mają być implementowane, a następnie w klasie implementującej ten interfejs wpisaćdefinicje metod. Następnie proszę uzupełnić kontroler dla kategorii, który również będzie posiadał dwie metody - jedna `GET` pobierająca wszystkie kategorie z bazy danych (używając repozytorium), druga - `POST` przyjmująca jako parametr jedynie klasę `Category`, jej zadaniem będzie wstawienie nowej kategori do bazy danych (używając repozytorium).
 
-Aby zrealizować to świczenie, proszę wzorować się na istniejącym już kodzie - repozytorium i kontrolerze. Puste pliki, gotowe do uzupełnienia, są zawarte w repozytorium. Głównym zadaniem jest zadeklarowanie w interfejsie repozytorium dwóch metod, następnie ich napisanie w klasie repozytorium. W kolejnym kroku należy podpiąć repozytorium w kontrolerze (pokazane w poprzednich ćwiczeniach). Na końcu tworzymy dwie metody w kontrolerze z odpowiednimi atrybutami: `[HttpGet/HttpPost]`. 
+Aby zrealizować to ćwiczenie, proszę wzorować się na istniejącym już kodzie - repozytorium i kontrolerze. Puste pliki, gotowe do uzupełnienia, są zawarte w repozytorium. Głównym zadaniem jest zadeklarowanie w interfejsie repozytorium dwóch metod, następnie ich napisanie w klasie repozytorium. W kolejnym kroku należy podpiąć repozytorium w kontrolerze (pokazane w poprzednich ćwiczeniach). Na końcu tworzymy dwie metody w kontrolerze z odpowiednimi atrybutami: `[HttpGet/HttpPost]`. 
+
+Aby dodać kategorię do bazy danych należy posłużyć się następującymi komendami:
+```csharp
+Context.Categories.Add(kategoria); /* wstawienie do kolekcji kategori, naszej nowej kategori */
+Context.SaveChanges(); /* zapisanie zmian (Entity Framework wykryje, że wstawiony obiekt jest nowy i zrobi INSERT do bazy */
+```
 
 Po wykonaniu zadania, przy użyciu Swaggera, proszę przetestować działanie API. Proszęodczytywać i zapisywać dane. Po każdym zapisaniu powinniśmy mieć coraz większy zbiór.
 
