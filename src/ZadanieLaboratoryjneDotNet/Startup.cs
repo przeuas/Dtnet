@@ -21,7 +21,7 @@ namespace ZadanieLaboratoryjneDotNet
     {
         /// <summary>
         /// Kontener, fabryka do wstrzykiwania zależności (DI)
-        /// </summary>
+        /// </summary> gowno
         public IContainer ApplicationContainer { get; private set; }
 
         public Startup(IHostingEnvironment env)
